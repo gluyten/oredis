@@ -518,7 +518,7 @@ BEGIN
        ELSE
          v_token := v_quoted_token || v_token;
          v_data.extend;          
-         v_data( v_data.count ) := REPLACE(v_token, '"', '');
+         v_data( v_data.count ) := REPLACE(REGEXP_REPLACE(v_token, '(^"?|"?$)', null), '\"', '"');
          v_str := SUBSTRB( v_str, v_idx_delim + LENGTHB(p_delim) );
          
          v_quoted_token := '';
