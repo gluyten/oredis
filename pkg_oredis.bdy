@@ -507,7 +507,7 @@ BEGIN
          
          IF LENGTHB(v_token) > 1 AND SUBSTRB(v_token, LENGTHB(v_token), 1) = '"' THEN
            v_data.extend;          
-           v_data( v_data.count ) := SUBSTR(v_token, 2, LENGTHB(v_token) - 2);
+           v_data( v_data.count ) := REPLACE(SUBSTR(v_token, 2, LENGTHB(v_token) - 2), '\"', '"');
            v_str := SUBSTRB( v_str, v_idx_delim + LENGTHB(p_delim) );           
          ELSE
            v_quoted_token := v_quoted_token || v_token || p_delim;
